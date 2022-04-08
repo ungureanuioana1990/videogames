@@ -15,6 +15,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   public games: Array<Game>;
   private routeSub: Subscription;
   private gameSub: Subscription;
+  tit: any;
+  data: Game[];
+  select: any;
+  isDesc: boolean;
 
   constructor(    
     private httpService: HttpService,
@@ -24,21 +28,28 @@ export class HomeComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
       this.routeSub = this.activatedRoute.params.subscribe((params: Params) => {
         if (params['game-search']) {
-          this.searchGames('metacrit', params['game-search']);
+          this.searchGames('title', params['game-search']);
         } else {
-          this.searchGames('metacrit');
+          this.searchGames('title');
         }
       });
     }
 
 
     searchGames(sort: string, search?: string): void {
-      this.gameSub = this.httpService
+      if ( this.games && search) {
+        this.games = this.games.filter(game => {
+          return game.title.toLocaleLowerCase().match(search.toLocaleLowerCase())
+        })
+      } else {
+        this.httpService
         .getGameList(sort, search)
         .subscribe((gameList: any) => {
           this.games = gameList;
           console.log(gameList);
         });
+      }
+     
     }
   
   openGameDetails(id: number  ): void {
@@ -54,6 +65,36 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.routeSub.unsubscribe();
     }
   }
+   sortData(){
+     if(this.select) {
+       let newSelect= this.games.sort((a, b) => a.id - b.id);
+       this.games= newSelect
+     }
+     else {
+       let newSelect = this.games.sort((a,b)=> b.id- a.id);
+       this.games= newSelect
+     }
+     this.select = !this.select;
+     console.log(this.games);
+   }
+
+   sortTitle(property){
+     this.isDesc = !this.isDesc;
+     let direction = this.isDesc ? 1: -1;
+     this.games.sort(function(a,b){
+       if(a[property]< b[property]){
+         return -1 * direction;
+       }
+       else if (a[property] > b[property]){
+         return 1* direction;
+       }
+       else {
+         return 0;
+       }
+      });
+     
+     
+   }
 
 }
 

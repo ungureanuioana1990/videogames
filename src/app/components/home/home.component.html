@@ -1,14 +1,9 @@
 <div class="filters">
     <mat-form-field>
         <mat-label>Sort</mat-label>
-        <mat-select panelClass="sort-select" [(ngModel)]="sort" (selectionChange)="searchGames(sort)">
-            <mat-option value="name">Name</mat-option>
-            <mat-option value="-released">Released</mat-option>
-            <mat-option value="-added">Added</mat-option>
-            <mat-option value="-created">Created</mat-option>
-            <mat-option value="-updated">Updated</mat-option>
-            <mat-option value="-rating">Rating</mat-option>
-            <mat-option value="metacritic">Metacritic</mat-option>
+        <mat-select panelClass="sort-select" [(ngModel)]="sort">
+            <mat-option value="id" (click)="sortData()" >id</mat-option>
+            <mat-option value="title" (click)="sortTitle('title')">title</mat-option>
         </mat-select>
     </mat-form-field>
 </div>
@@ -21,11 +16,11 @@
             </div>
             <div class="game-short_description">
                 <p class="game-title">{{ game.title }}</p>
-                <div class="game-platforms">
-                    <!-- <img *ngFor="let gamePlatform of game.platform; index as i" class="game-platform" src="assets/images/platforms{{ gamePlatform.platform.slug}}.svg" alt="{{ gamePlatform.platform.slug}}" /> -->
-                </div>
+                <!-- <div class="game-platforms">
+                    <img *ngFor="let gamePlatform of games; index as i" class="game-platform" src="assets/images/platforms{{ gamePlatform.platform.slug}}.svg" alt="{{ gamePlatform.platform.slug}}" />
+                </div> -->
             </div>
-            <div>love
+            <div> GAMES
 
             </div>
         </div>

@@ -1,4 +1,6 @@
 export interface Game {
+    name: string;
+    firstName: any;
     thumbnail: string;
     title: string;
     released: string;
@@ -12,7 +14,7 @@ export interface Game {
     ratings: Array<Rating>;
     screenshots: Array<Screenshots>;
     trailers: Array<Trailer>;
-    id: number;
+    id: any;
     developer: string;
     short_description: string;
 }

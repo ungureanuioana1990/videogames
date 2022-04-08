@@ -40,11 +40,12 @@
 .game {
     width: 280px;
     margin: 10px;
-    height: 330px;
+    height: 239px;
     overflow: hidden;
     border-radius: 5px;
-    background-color: #202020;
-    box-shadow: 4px 3px 8px 0px rgb(200 152 44 / 22%);
+    background-color:#dadfe5;
+    opacity: 2px;
+    box-shadow: 4px 3px 8px 0px rgba(81, 77, 65, 0.22);
     transition-duration: 0.3s;
     cursor: pointer;
     &:hover {
@@ -52,7 +53,7 @@
         transform: translateY(-3px);
     }
     &-thumb-container {
-        background-color: #000;
+        background-color: red;
         position: relative;
         height: 172px;
         color: #fff;

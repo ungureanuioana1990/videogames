@@ -15,9 +15,9 @@ export class HttpHeadersInterceptor implements HttpInterceptor {
         'x-rapidapi-key': '596a36a83dmshd72626a99d1f167p13feaajsn1400a277b0d7',
         'x-rapidapi-host': 'free-to-play-games-database.p.rapidapi.com',
       },
-      // setParams: {
-      //   key: 'e40e743af2c94b0c916a8aa618fb4473',
-      // }
+      setParams: {
+        key: 'e40e743af2c94b0c916a8aa618fb4473',
+      }
     });
     return next.handle(req);
   }
